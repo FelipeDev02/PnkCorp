@@ -1,11 +1,165 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Login | PnK Corp">
+  <div class="card">
+    <div class="card-head">
+      <div class="badge">Portal de acceso</div>
+      <h1>Bienvenido de <span>vuelta</span></h1>
+      <p class="subtitle">Ingresa tus credenciales para continuar</p>
+    </div>
+
+    <div class="field">
+      <label for="email">Correo electrónico</label>
+      <input id="email" type="email" placeholder="tu@email.com" autocomplete="email" />
+    </div>
+
+    <div class="field">
+      <div class="field-row">
+        <label for="password" style="margin-bottom:0">Contraseña</label>
+        <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
+      </div>
+      <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+
+    <a href="/dashboard" class="btn text-center text-decoration-none d-block">
+      Iniciar sesión
+    </a>
+
+    <div class="divider">o continuar con</div>
+
+    <div class="card-footer">
+      ¿No tienes una cuenta? <a href="#">Solicitar acceso</a>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  /* Estilos específicos de la CARD que no pusimos en el Layout Global 
+     para mantener el index.astro independiente.
+  */
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 48px 40px 44px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, .25),
+        0 24px 60px rgba(0, 0, 0, .45),
+        inset 0 1px 0 rgba(255, 255, 255, .08);
+    animation: cardIn .55s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  @keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(28px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+  }
+
+  .card-head {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  h1 span {
+    color: var(--accent-glow);
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    letter-spacing: .2px;
+  }
+
+  input {
+    width: 100%;
+    padding: 13px 16px;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+    outline: none;
+  }
+
+  input:focus {
+    border-color: var(--accent);
+    background: rgba(92, 110, 248, .06);
+    box-shadow: 0 0 0 3px rgba(92, 110, 248, .15);
+  }
+
+  .btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-glow) 100%);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 4px 20px rgba(92, 110, 248, .4);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(92, 110, 248, .55);
+    color: white;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+</style>

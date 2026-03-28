@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#" class="nav-logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+            </div>
+            <span class="logo-name">PnK<span>Corp</span></span>
+        </a>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="page">
+        <div class="card">
+
+            <div class="card-head">
+                <div class="badge">Portal de acceso</div>
+                <h1>Bienvenido de <span>vuelta</span></h1>
+                <p class="subtitle">Ingresa tus credenciales para continuar</p>
+            </div>
+
+            <div class="field">
+                <label for="email">Correo electrónico</label>
+                <input id="email" type="email" placeholder="tu@email.com" autocomplete="email" />
+            </div>
+
+            <div class="field">
+                <div class="field-row">
+                    <label for="password" style="margin-bottom:0">Contraseña</label>
+                </div>
+                <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" />
+            </div>
+
+            <button class="btn">Iniciar sesión</button>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

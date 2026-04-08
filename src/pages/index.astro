@@ -11,8 +11,8 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="field">
-      <label for="email">Correo electrónico</label>
-      <input id="email" type="email" placeholder="tu@email.com" autocomplete="email" />
+      <label for="username">Nombre de usuario</label>
+      <input id="username" type="text" placeholder="Tu usuario" autocomplete="username" />
     </div>
 
     <div class="field">
@@ -23,9 +23,44 @@ import Layout from '../layouts/Layout.astro';
       <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" />
     </div>
 
-    <a href="/dashboard" class="btn text-center text-decoration-none d-block">
+    <button id="loginBtn" class="btn text-center text-decoration-none d-block">
       Iniciar sesión
-    </a>
+    </button>
+
+    <script>
+      const btn = document.getElementById('loginBtn');
+      
+      btn?.addEventListener('click', async (e) => {
+        e.preventDefault(); // Evita que la página se recargue
+        
+        const usernameInput = document.getElementById('username') as HTMLInputElement;
+        const passwordInput = document.getElementById('password') as HTMLInputElement;
+
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        try {
+          const response = await fetch('http://127.0.0.1:8000/api/login/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            // Guardamos el nombre en localStorage por si quieres mostrar "Hola, Felipe" en el dashboard
+            localStorage.setItem('user', data.username);
+            window.location.href = '/dashboard'; 
+          } else {
+            alert(data.error || "Credenciales incorrectas");
+          }
+        } catch (error) {
+          console.error("Error de conexión:", error);
+          alert("No se pudo conectar con el servidor. ¿Está Django corriendo?");
+        }
+      });
+    </script>
 
     <div class="divider">o continuar con</div>
 

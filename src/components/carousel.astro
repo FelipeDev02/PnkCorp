@@ -1,20 +1,12 @@
 <div id="mainCarousel" class="carousel slide custom-carousel shadow-lg" data-bs-ride="carousel">
-    <div class="carousel-inner rounded-4 border border-white border-opacity-10">
+    <div class="carousel-inner rounded-4 border border-white border-opacity-10" id="carousel-items-wrapper">
         <div class="carousel-item active">
-            <img src="https://picsum.photos/id/10/1200/500" class="d-block w-100" alt="...">
-            <div class="carousel-overlay">
-                <h3>Sistemas Cloud AWS</h3>
-                <p>Infraestructura escalable para PnK Corp.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="https://picsum.photos/id/20/1200/500" class="d-block w-100" alt="...">
-            <div class="carousel-overlay">
-                <h3>Base de Datos Postgres</h3>
-                <p>Seguridad y rendimiento en cada consulta.</p>
+            <div class="d-flex justify-content-center align-items-center" style="height: 450px; background: rgba(255,255,255,0.02);">
+                <div class="spinner-border text-primary" role="status"></div>
             </div>
         </div>
     </div>
+    
     <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
     </button>
@@ -22,6 +14,45 @@
         <span class="carousel-control-next-icon"></span>
     </button>
 </div>
+
+<script>
+    async function fetchCarousel() {
+        const wrapper = document.getElementById('carousel-items-wrapper');
+        const djangoBaseUrl = 'http://127.0.0.1:8000'; // Base de tu servidor Django
+        
+        try {
+            const response = await fetch(`${djangoBaseUrl}/api/carrusel/`);
+            const items = await response.json();
+
+            if (items && items.length > 0) {
+                wrapper.innerHTML = items.map((item, index) => {
+                    // Si usas ImageField, el campo suele llamarse 'image' en el JSON
+                    // y trae una ruta que empieza con /media/
+                    const imageSource = item.image.startsWith('http') 
+                        ? item.image 
+                        : `${djangoBaseUrl}${item.image}`;
+
+                    return `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${imageSource}" class="d-block w-100" alt="${item.title}">
+                            <div class="carousel-overlay">
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                wrapper.innerHTML = '<div class="p-5 text-center text-muted">No hay proyectos en la BD.</div>';
+            }
+        } catch (error) {
+            console.error("Error cargando carrusel:", error);
+            wrapper.innerHTML = '<div class="p-5 text-center text-danger">Error de conexión con Django.</div>';
+        }
+    }
+
+    fetchCarousel();
+</script>
 
 <style>
     .custom-carousel {
@@ -38,11 +69,21 @@
         bottom: 40px;
         left: 40px;
         z-index: 10;
+        text-align: left;
         font-family: 'Syne', sans-serif;
     }
-    .carousel-overlay h3 { font-weight: 800; color: #7b8bff; }
+    .carousel-overlay h3 { 
+        font-weight: 800; 
+        color: #7b8bff; 
+        margin-bottom: 5px;
+    }
+    .carousel-overlay p {
+        color: white;
+        margin-bottom: 0;
+    }
 
     @media (max-width: 768px) {
         .carousel-item img { height: 300px; }
+        .carousel-overlay { bottom: 20px; left: 20px; }
     }
-</style>
+</style>    

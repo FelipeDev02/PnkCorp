@@ -1,16 +1,23 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Carousel from '../components/Carousel.astro';
+import Layout from "../layouts/Layout.astro";
+import Carousel from "../components/carousel.astro";
 ---
+
 <Layout title="Dashboard | PnK Corp">
     <div class="container py-5 text-center">
         <div class="badge mb-3">Panel de control</div>
         <h1 class="mb-5">Bienvenido</h1>
-        
+
         <Carousel />
-        
-        <div class="mt-5 card p-4 mx-auto" style="max-width: 600px; background: rgba(255,255,255,0.02)">
-            <p class="subtitle text-start">Estado del servidor: <span class="text-success">Online (AWS EC2)</span></p>
+
+        <div
+            class="mt-5 card p-4 mx-auto"
+            style="max-width: 600px; background: rgba(255,255,255,0.02)"
+        >
+            <p class="subtitle text-start">
+                Estado del servidor: <span class="text-success"
+                    >Online (AWS EC2)</span>
+            </p>
         </div>
     </div>
 </Layout>

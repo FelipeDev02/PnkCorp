@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pnk_db',          # El nombre que creaste en pgAdmin
-        'USER': 'postgres',        # El dueño (User)
-        'PASSWORD': 'Sololeveling9.', # La clave que pusiste en el psql
+        'USER': 'pnk',        # El dueño (User)
+        'PASSWORD': 'Admin01', # La clave que pusiste en el psql
         'HOST': '127.0.0.1',      # Localhost
         'PORT': '5432',            # Puerto por defecto
     }

@@ -1,4 +1,11 @@
 node_modules/
 dist/
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.env
 .DS_Store
-.env
+media/
+*.sqlite3
+```

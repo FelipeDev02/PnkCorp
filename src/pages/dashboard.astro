@@ -3,6 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import Carousel from "../components/carousel.astro";
 ---
 
+<script is:inline>
+    if (!localStorage.getItem('user')) {
+        window.location.replace('/');
+    }
+</script>
+
 <Layout title="Dashboard | PnK Corp">
     <div class="container py-5 text-center">
         <div class="badge mb-3">Panel de control</div>

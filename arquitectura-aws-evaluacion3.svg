@@ -1,0 +1,251 @@
+<svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="1400" height="900" fill="#F8F9FA" rx="0"/>
+
+  <!-- Title -->
+  <text x="700" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#1A1A2E">Arquitectura AWS — Evaluación 3 · PnkCorp</text>
+  <text x="700" y="58" text-anchor="middle" font-size="12" fill="#6C757D">VPC evaluacion3-vpc · 10.0.0.0/16 · us-east-1</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- INTERNET (top) -->
+  <!-- ══════════════════════════════════════════════ -->
+  <ellipse cx="700" cy="100" rx="70" ry="28" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="700" y="97" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">🌐 Internet</text>
+  <text x="700" y="111" text-anchor="middle" font-size="9" fill="#1565C0">Usuarios / Tráfico</text>
+
+  <!-- Arrow Internet → IGW -->
+  <line x1="700" y1="128" x2="700" y2="155" stroke="#1565C0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- INTERNET GATEWAY -->
+  <!-- ══════════════════════════════════════════════ -->
+  <rect x="630" y="155" width="140" height="42" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="700" y="172" text-anchor="middle" font-size="10" font-weight="bold" fill="#2E7D32">🔌 Internet Gateway</text>
+  <text x="700" y="187" text-anchor="middle" font-size="9" fill="#2E7D32">igw-08961316b41b7dcf2</text>
+
+  <!-- Arrow IGW → ALB -->
+  <line x1="700" y1="197" x2="700" y2="222" stroke="#2E7D32" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- MAIN VPC BOX -->
+  <!-- ══════════════════════════════════════════════ -->
+  <rect x="30" y="210" width="1020" height="650" rx="12" fill="none" stroke="#7E57C2" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="50" y="232" font-size="11" font-weight="bold" fill="#7E57C2">VPC: evaluacion3-vpc  (10.0.0.0/16)</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- ALB -->
+  <!-- ══════════════════════════════════════════════ -->
+  <rect x="520" y="222" width="360" height="56" rx="8" fill="#FFF3E0" stroke="#E65100" stroke-width="2"/>
+  <text x="700" y="244" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">⚖️ ALB-evaluacion3</text>
+  <text x="700" y="259" text-anchor="middle" font-size="9" fill="#E65100">ALB-evaluacion3-1664710038.us-east-1.elb.amazonaws.com</text>
+  <text x="700" y="272" text-anchor="middle" font-size="9" fill="#E65100">Listener :4321 → TG-Astro-4321  |  Listener :8000 → TG-Django-8000</text>
+
+  <!-- ALB → AZ-A arrow -->
+  <line x1="620" y1="278" x2="390" y2="320" stroke="#E65100" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-orange)"/>
+  <!-- ALB → AZ-B arrow -->
+  <line x1="780" y1="278" x2="790" y2="320" stroke="#E65100" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-orange)"/>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- AZ us-east-1a  (left column) -->
+  <!-- ══════════════════════════════════════════════ -->
+  <rect x="50" y="310" width="450" height="510" rx="10" fill="none" stroke="#42A5F5" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="275" y="328" text-anchor="middle" font-size="10" font-weight="bold" fill="#1565C0">AZ: us-east-1a</text>
+
+  <!-- Public subnet 1a -->
+  <rect x="65" y="335" width="415" height="90" rx="8" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
+  <text x="85" y="352" font-size="9" font-weight="bold" fill="#1976D2">Public Subnet 1a  10.0.10.0/24</text>
+  <!-- NAT GW inside public subnet -->
+  <rect x="80" y="358" width="155" height="56" rx="6" fill="#BBDEFB" stroke="#1565C0" stroke-width="1"/>
+  <text x="157" y="375" text-anchor="middle" font-size="9" font-weight="bold" fill="#1565C0">🔄 NAT Gateway</text>
+  <text x="157" y="388" text-anchor="middle" font-size="8" fill="#1565C0">nat-0973ff6a93db9cc43</text>
+  <text x="157" y="401" text-anchor="middle" font-size="8" fill="#1565C0">EIP: 98.80.27.216</text>
+
+  <!-- Private subnet 1a -->
+  <rect x="65" y="435" width="415" height="370" rx="8" fill="#E8F5E9" stroke="#388E3C" stroke-width="1"/>
+  <text x="85" y="453" font-size="9" font-weight="bold" fill="#2E7D32">Private Subnet 1a  10.0.200.0/24</text>
+  <!-- Route: 0.0.0.0/0 → NAT GW -->
+  <text x="85" y="467" font-size="8" fill="#2E7D32">Route: 0.0.0.0/0 → NAT GW</text>
+
+  <!-- EC2 instance 1 -->
+  <rect x="80" y="473" width="385" height="135" rx="6" fill="white" stroke="#43A047" stroke-width="1.5"/>
+  <text x="272" y="491" text-anchor="middle" font-size="9" font-weight="bold" fill="#1B5E20">EC2 t2.micro  (AMI-evaluacion3-v3)</text>
+  <text x="272" y="504" text-anchor="middle" font-size="8" fill="#424242">IP: 10.0.200.x  |  SG: SG-EC2-privada</text>
+  <!-- Nginx box -->
+  <rect x="93" y="510" width="165" height="42" rx="4" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1"/>
+  <text x="175" y="526" text-anchor="middle" font-size="9" font-weight="bold" fill="#2E7D32">Nginx :4321</text>
+  <text x="175" y="539" text-anchor="middle" font-size="8" fill="#2E7D32">Astro Static Site</text>
+  <text x="175" y="549" text-anchor="middle" font-size="7.5" fill="#2E7D32">serve dist/</text>
+  <!-- Gunicorn box -->
+  <rect x="272" y="510" width="185" height="42" rx="4" fill="#FFF8E1" stroke="#FFA726" stroke-width="1"/>
+  <text x="364" y="526" text-anchor="middle" font-size="9" font-weight="bold" fill="#E65100">Gunicorn :8000</text>
+  <text x="364" y="539" text-anchor="middle" font-size="8" fill="#E65100">Django API + WhiteNoise</text>
+  <text x="364" y="549" text-anchor="middle" font-size="7.5" fill="#E65100">pnk_db  ·  /api/  /admin/</text>
+
+  <!-- Health check badge -->
+  <rect x="93" y="558" width="80" height="18" rx="4" fill="#C8E6C9"/>
+  <text x="133" y="570" text-anchor="middle" font-size="8" font-weight="bold" fill="#2E7D32">✓ Healthy</text>
+
+  <!-- ASG label -->
+  <rect x="80" y="620" width="385" height="170" rx="6" fill="white" stroke="#43A047" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="272" y="638" text-anchor="middle" font-size="9" font-weight="bold" fill="#1B5E20">EC2 t2.micro  (ASG — escala automática)</text>
+  <text x="272" y="651" text-anchor="middle" font-size="8" fill="#424242">IP dinámica  |  mismo AMI v3</text>
+  <rect x="93" y="657" width="165" height="38" rx="4" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1"/>
+  <text x="175" y="672" text-anchor="middle" font-size="9" font-weight="bold" fill="#2E7D32">Nginx :4321</text>
+  <text x="175" y="685" text-anchor="middle" font-size="8" fill="#2E7D32">Astro Static Site</text>
+  <rect x="272" y="657" width="185" height="38" rx="4" fill="#FFF8E1" stroke="#FFA726" stroke-width="1"/>
+  <text x="364" y="672" text-anchor="middle" font-size="9" font-weight="bold" fill="#E65100">Gunicorn :8000</text>
+  <text x="364" y="685" text-anchor="middle" font-size="8" fill="#E65100">Django API + WhiteNoise</text>
+
+  <!-- ASG info -->
+  <rect x="93" y="702" width="372" height="74" rx="4" fill="#F3E5F5" stroke="#9C27B0" stroke-width="1"/>
+  <text x="279" y="718" text-anchor="middle" font-size="9" font-weight="bold" fill="#6A1B9A">🔁 Auto Scaling Group — ASG-evaluacion3</text>
+  <text x="279" y="731" text-anchor="middle" font-size="8" fill="#4A148C">Min: 2  ·  Desired: 2  ·  Max: 4</text>
+  <text x="279" y="744" text-anchor="middle" font-size="8" fill="#4A148C">Política: Scale Out si CPU &gt; 50%  ·  Scale In si CPU &lt; 30%</text>
+  <text x="279" y="757" text-anchor="middle" font-size="8" fill="#4A148C">Launch Template: lt-evaluacion3-v3  ·  Subnets: private1a + private1b</text>
+  <text x="279" y="770" text-anchor="middle" font-size="8" fill="#4A148C">Target Groups: TG-Astro-4321  ·  TG-Django-8000</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- AZ us-east-1b  (right column) -->
+  <!-- ══════════════════════════════════════════════ -->
+  <rect x="520" y="310" width="510" height="370" rx="10" fill="none" stroke="#42A5F5" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="775" y="328" text-anchor="middle" font-size="10" font-weight="bold" fill="#1565C0">AZ: us-east-1b</text>
+
+  <!-- Public subnet 1b -->
+  <rect x="535" y="335" width="480" height="90" rx="8" fill="#E3F2FD" stroke="#1976D2" stroke-width="1"/>
+  <text x="555" y="352" font-size="9" font-weight="bold" fill="#1976D2">Public Subnet 1b  10.0.20.0/24</text>
+  <text x="555" y="366" font-size="8" fill="#1565C0">Route: 0.0.0.0/0 → IGW  (instancias sin IP pública = sin acceso a internet)</text>
+  <!-- ALB node visual -->
+  <rect x="800" y="356" width="200" height="58" rx="6" fill="#FFF9C4" stroke="#F9A825" stroke-width="1"/>
+  <text x="900" y="374" text-anchor="middle" font-size="9" font-weight="bold" fill="#E65100">ALB Nodes</text>
+  <text x="900" y="387" text-anchor="middle" font-size="8" fill="#E65100">Distribuye tráfico entre</text>
+  <text x="900" y="400" text-anchor="middle" font-size="8" fill="#E65100">instancias en ambas AZs</text>
+
+  <!-- Private subnet 1b -->
+  <rect x="535" y="435" width="480" height="175" rx="8" fill="#E8F5E9" stroke="#388E3C" stroke-width="1"/>
+  <text x="555" y="453" font-size="9" font-weight="bold" fill="#2E7D32">Private Subnet 1b  10.0.201.0/24  (o similar)</text>
+  <text x="555" y="467" font-size="8" fill="#2E7D32">Route: 0.0.0.0/0 → NAT GW</text>
+
+  <!-- EC2 instance 2 -->
+  <rect x="550" y="473" width="450" height="127" rx="6" fill="white" stroke="#43A047" stroke-width="1.5"/>
+  <text x="775" y="491" text-anchor="middle" font-size="9" font-weight="bold" fill="#1B5E20">EC2 t2.micro  (AMI-evaluacion3-v3)</text>
+  <text x="775" y="504" text-anchor="middle" font-size="8" fill="#424242">IP: 10.0.200.7  |  SG: SG-EC2-privada</text>
+  <rect x="563" y="510" width="198" height="42" rx="4" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1"/>
+  <text x="662" y="526" text-anchor="middle" font-size="9" font-weight="bold" fill="#2E7D32">Nginx :4321</text>
+  <text x="662" y="539" text-anchor="middle" font-size="8" fill="#2E7D32">Astro Static Site</text>
+  <text x="662" y="549" text-anchor="middle" font-size="7.5" fill="#2E7D32">serve dist/</text>
+  <rect x="772" y="510" width="215" height="42" rx="4" fill="#FFF8E1" stroke="#FFA726" stroke-width="1"/>
+  <text x="879" y="526" text-anchor="middle" font-size="9" font-weight="bold" fill="#E65100">Gunicorn :8000</text>
+  <text x="879" y="539" text-anchor="middle" font-size="8" fill="#E65100">Django API + WhiteNoise</text>
+  <text x="879" y="549" text-anchor="middle" font-size="7.5" fill="#E65100">pnk_db  ·  /api/  /admin/</text>
+  <rect x="563" y="558" width="80" height="18" rx="4" fill="#C8E6C9"/>
+  <text x="603" y="570" text-anchor="middle" font-size="8" font-weight="bold" fill="#2E7D32">✓ Healthy</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- RDS (bottom right, outside main VPC or default VPC) -->
+  <!-- ══════════════════════════════════════════════ -->
+  <rect x="540" y="690" width="470" height="96" rx="10" fill="#FCE4EC" stroke="#C62828" stroke-width="2"/>
+  <text x="775" y="710" text-anchor="middle" font-size="10" font-weight="bold" fill="#B71C1C">🗄️ RDS PostgreSQL — rds-evaluacion3</text>
+  <text x="775" y="726" text-anchor="middle" font-size="9" fill="#C62828">Instancia: db.t3.micro  ·  Base de datos: pnk_db  ·  Usuario: pnk</text>
+  <text x="775" y="741" text-anchor="middle" font-size="9" fill="#C62828">rds-evaluacion3.xxxx.rds.amazonaws.com  ·  Puerto: 5432</text>
+  <text x="775" y="756" text-anchor="middle" font-size="9" fill="#C62828">SG: SG-RDS-public  ·  Multi-AZ: No  ·  Default VPC</text>
+  <text x="775" y="770" text-anchor="middle" font-size="9" fill="#C62828">Acceso desde EC2 vía NAT Gateway</text>
+
+  <!-- Arrow EC2 → RDS -->
+  <line x1="700" y1="600" x2="700" y2="688" stroke="#C62828" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-red)"/>
+  <line x1="775" y1="600" x2="775" y2="688" stroke="#C62828" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-red)"/>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- S3 + Lambda + EventBridge (right panel) -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- S3 Bucket -->
+  <rect x="1075" y="210" width="295" height="130" rx="10" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+  <text x="1222" y="232" text-anchor="middle" font-size="11" font-weight="bold" fill="#1B5E20">🪣 S3 Bucket</text>
+  <text x="1222" y="248" text-anchor="middle" font-size="10" font-weight="bold" fill="#2E7D32">pero-eva3-4-final</text>
+  <text x="1222" y="264" text-anchor="middle" font-size="9" fill="#388E3C">Carpeta: backups/</text>
+  <text x="1222" y="280" text-anchor="middle" font-size="9" fill="#388E3C">Archivos: Respaldo_BD_DD_MM_YYYY.sql</text>
+  <text x="1222" y="296" text-anchor="middle" font-size="8" fill="#555">Región: us-east-1 (global namespace)</text>
+  <text x="1222" y="312" text-anchor="middle" font-size="8" fill="#555">Acceso: Lambda vía s3:PutObject (LabRole)</text>
+  <text x="1222" y="328" text-anchor="middle" font-size="8" fill="#555">Encriptación: SSE-S3 por defecto</text>
+
+  <!-- Lambda -->
+  <rect x="1075" y="360" width="295" height="120" rx="10" fill="#EDE7F6" stroke="#6A1B9A" stroke-width="2"/>
+  <text x="1222" y="382" text-anchor="middle" font-size="11" font-weight="bold" fill="#4A148C">λ Lambda</text>
+  <text x="1222" y="398" text-anchor="middle" font-size="10" font-weight="bold" fill="#6A1B9A">backup-bd-diario</text>
+  <text x="1222" y="414" text-anchor="middle" font-size="9" fill="#7B1FA2">Runtime: Python 3.12  ·  256 MB</text>
+  <text x="1222" y="430" text-anchor="middle" font-size="9" fill="#7B1FA2">Ejecuta pg_dump → /tmp/ → S3</text>
+  <text x="1222" y="446" text-anchor="middle" font-size="9" fill="#7B1FA2">Rol IAM: LabRole</text>
+  <text x="1222" y="462" text-anchor="middle" font-size="9" fill="#7B1FA2">VPC: evaluacion3-vpc (acceso a RDS)</text>
+
+  <!-- EventBridge -->
+  <rect x="1075" y="500" width="295" height="100" rx="10" fill="#FFF8E1" stroke="#F57F17" stroke-width="2"/>
+  <text x="1222" y="522" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">⏱ EventBridge</text>
+  <text x="1222" y="538" text-anchor="middle" font-size="10" font-weight="bold" fill="#F57F17">backup-diario-2359</text>
+  <text x="1222" y="554" text-anchor="middle" font-size="9" fill="#E65100">Cron: 59 23 * * ? *</text>
+  <text x="1222" y="570" text-anchor="middle" font-size="9" fill="#E65100">Trigger diario a las 23:59 UTC</text>
+  <text x="1222" y="586" text-anchor="middle" font-size="9" fill="#E65100">Regla programada (heredada)</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- Arrows between services (right panel) -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- EventBridge → Lambda -->
+  <line x1="1222" y1="500" x2="1222" y2="480" stroke="#F57F17" stroke-width="2" marker-end="url(#arrow-orange2)"/>
+  <!-- Lambda → S3 -->
+  <line x1="1222" y1="360" x2="1222" y2="340" stroke="#6A1B9A" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <!-- Lambda → RDS connection label -->
+  <line x1="1075" y1="420" x2="1010" y2="700" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow-purple)"/>
+  <text x="1030" y="590" font-size="8" fill="#6A1B9A" transform="rotate(-70,1030,590)">pg_dump → RDS</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- Security Groups legend -->
+  <!-- ══════════════════════════════════════════════ -->
+  <rect x="1075" y="620" width="295" height="200" rx="10" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="1.5"/>
+  <text x="1222" y="640" text-anchor="middle" font-size="10" font-weight="bold" fill="#424242">🔒 Security Groups</text>
+
+  <rect x="1090" y="650" width="265" height="30" rx="4" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="1222" y="663" text-anchor="middle" font-size="8" font-weight="bold" fill="#C62828">SG-ALB-publico</text>
+  <text x="1222" y="674" text-anchor="middle" font-size="7.5" fill="#B71C1C">In: TCP 80,4321,8000 0.0.0.0/0  |  Out: All</text>
+
+  <rect x="1090" y="687" width="265" height="30" rx="4" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="1222" y="700" text-anchor="middle" font-size="8" font-weight="bold" fill="#2E7D32">SG-EC2-privada</text>
+  <text x="1222" y="711" text-anchor="middle" font-size="7.5" fill="#1B5E20">In: 4321,8000 from SG-ALB  |  22 0.0.0.0/0</text>
+
+  <rect x="1090" y="724" width="265" height="30" rx="4" fill="#FCE4EC" stroke="#F48FB1" stroke-width="1"/>
+  <text x="1222" y="737" text-anchor="middle" font-size="8" font-weight="bold" fill="#C62828">SG-RDS-public</text>
+  <text x="1222" y="748" text-anchor="middle" font-size="7.5" fill="#B71C1C">In: TCP 5432  0.0.0.0/0  |  Out: All</text>
+
+  <rect x="1090" y="761" width="265" height="30" rx="4" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1"/>
+  <text x="1222" y="774" text-anchor="middle" font-size="8" font-weight="bold" fill="#4A148C">IAM: LabRole</text>
+  <text x="1222" y="785" text-anchor="middle" font-size="7.5" fill="#4A148C">s3:PutObject · rds-db:connect · Lambda exec</text>
+
+  <rect x="1090" y="798" width="265" height="18" rx="4" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1"/>
+  <text x="1222" y="811" text-anchor="middle" font-size="7.5" fill="#1565C0">Cuenta AWS Academy: 926620869904  ·  us-east-1</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- Arrow defs -->
+  <!-- ══════════════════════════════════════════════ -->
+  <defs>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1565C0"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2E7D32"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#E65100"/>
+    </marker>
+    <marker id="arrow-orange2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#F57F17"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#6A1B9A"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#C62828"/>
+    </marker>
+  </defs>
+
+  <!-- Footer -->
+  <text x="700" y="885" text-anchor="middle" font-size="9" fill="#9E9E9E">Evaluación 3 · Arquitectura Multi-cloud AWS · 2026  |  Felipe  ·  felipe.jl.0209@gmail.com</text>
+
+</svg>

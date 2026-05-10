@@ -6,7 +6,7 @@
             </div>
         </div>
     </div>
-    
+
     <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
     </button>
@@ -18,19 +18,16 @@
 <script>
     async function fetchCarousel() {
         const wrapper = document.getElementById('carousel-items-wrapper');
-        const djangoBaseUrl = 'http://127.0.0.1:8000'; // Base de tu servidor Django
-        
+
         try {
-            const response = await fetch(`${djangoBaseUrl}/api/carrusel/`);
+            const response = await fetch('/api/carrusel/');
             const items = await response.json();
 
             if (items && items.length > 0) {
                 wrapper.innerHTML = items.map((item, index) => {
-                    // Si usas ImageField, el campo suele llamarse 'image' en el JSON
-                    // y trae una ruta que empieza con /media/
-                    const imageSource = item.image.startsWith('http') 
-                        ? item.image 
-                        : `${djangoBaseUrl}${item.image}`;
+                    const imageSource = item.image.startsWith('http')
+                        ? item.image
+                        : item.image;
 
                     return `
                         <div class="carousel-item ${index === 0 ? 'active' : ''}">
@@ -72,9 +69,9 @@
         text-align: left;
         font-family: 'Syne', sans-serif;
     }
-    .carousel-overlay h3 { 
-        font-weight: 800; 
-        color: #7b8bff; 
+    .carousel-overlay h3 {
+        font-weight: 800;
+        color: #7b8bff;
         margin-bottom: 5px;
     }
     .carousel-overlay p {
@@ -86,4 +83,4 @@
         .carousel-item img { height: 300px; }
         .carousel-overlay { bottom: 20px; left: 20px; }
     }
-</style>    
+</style>

@@ -61,7 +61,7 @@ const { title } = Astro.props;
             logoutBtn?.addEventListener('click', async () => {
                 try {
                     // Notificar al servidor Django
-                    await fetch('http://127.0.0.1:8000/api/logout/', { 
+                    await fetch('/api/logout/', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' }
                     });

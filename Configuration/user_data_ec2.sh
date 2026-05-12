@@ -5,10 +5,10 @@ exec > /var/log/user-data.log 2>&1
 # =============================================================
 # VARIABLES - MODIFICAR ANTES DE USAR
 # =============================================================
-GITHUB_REPO="https://github.com/TU_USUARIO/pp2multicloud.git"
+GITHUB_REPO="https://github.com/FelipeDev02/PnkCorp"
 APP_DIR="/home/ubuntu/pp2multicloud"
 S3_BUCKET="pero-eva3-4-final"
-DB_HOST="rds-evaluacion3.cyzhg9dznddy.us-east-1.rds.amazonaws.com"
+DB_HOST="rds-evaluacion3.cwrq7fkqs93f.us-east-1.rds.amazonaws.com"
 DB_NAME="pnk_db"
 DB_USER="pnk"
 DB_PASSWORD="Admin01."
@@ -21,8 +21,8 @@ echo ">>> Actualizando sistema..."
 apt-get update -y
 apt-get install -y git python3 python3-pip python3-venv nginx
 
-echo ">>> Instalando Node.js 20..."
-curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+echo ">>> Instalando Node.js 22..."
+curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 apt-get install -y nodejs
 
 echo ">>> Clonando repositorio..."
@@ -81,7 +81,7 @@ npm run build
 echo ">>> Configurando Nginx..."
 cat > /etc/nginx/sites-available/astro << 'NGINX_CONF'
 server {
-    listen 4321;
+    listen 80;
     server_name _;
     root /home/ubuntu/pp2multicloud/dist;
     index index.html;
@@ -98,7 +98,17 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
+
+    # Proxy del admin hacia Gunicorn (Django)
+    location /admin/ {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
 }
+
+# Gunicorn también accesible directo en :8000 (sin cambios)
 NGINX_CONF
 
 ln -sf /etc/nginx/sites-available/astro /etc/nginx/sites-enabled/astro

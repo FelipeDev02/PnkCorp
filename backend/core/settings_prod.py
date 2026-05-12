@@ -59,7 +59,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'pnk_db'),
         'USER': os.environ.get('DB_USER', 'pnk'),
         'PASSWORD': os.environ.get('DB_PASSWORD', 'Admin01.'),
-        'HOST': os.environ.get('DB_HOST', 'rds-evaluacion3.cyzhg9dznddy.us-east-1.rds.amazonaws.com'),
+        'HOST': os.environ.get('DB_HOST', 'rds-evaluacion3.cwrq7fkqs93f.us-east-1.rds.amazonaws.com'),
         'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
